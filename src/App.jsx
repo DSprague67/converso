@@ -12,7 +12,7 @@ export default function LanguageConversationLandingPage() {
       joinWaitlist: "Join the waitlist",
       joinDiscord: "Join our Discord",
       seeHowItWorks: "See how it works",
-      quick1: "20-minute sessions",
+      quick1: "10 - 60 minute sessions",
       quick2: "Native speakers",
       quick3: "Guided prompts",
       sampleLabel: "Sample Session",
@@ -20,7 +20,7 @@ export default function LanguageConversationLandingPage() {
       sample1: "Describe your favorite place you have visited.",
       sample2: "Ask your partner where they would travel if money were no object.",
       sample3: "Debate: beach trip or mountain trip?",
-      sampleFooter: "20 minutes · Beginner to Intermediate",
+      sampleFooter: "10 - 50 minutes · Beginner to Intermediate",
       samplePrice: "From $8",
       howTitle: "How it works",
       howText:
@@ -70,7 +70,7 @@ export default function LanguageConversationLandingPage() {
       joinWaitlist: "Únete a la lista de espera",
       joinDiscord: "Únete a nuestro Discord",
       seeHowItWorks: "Ver cómo funciona",
-      quick1: "Sesiones de 20 minutos",
+      quick1: "Sesiones de 10 - 60 minutos",
       quick2: "Hablantes nativos",
       quick3: "Guías de conversación",
       sampleLabel: "Sesión de ejemplo",
@@ -79,7 +79,7 @@ export default function LanguageConversationLandingPage() {
       sample2:
         "Pregúntale a tu compañero a dónde viajaría si el dinero no fuera un problema.",
       sample3: "Debate: ¿playa o montaña?",
-      sampleFooter: "20 minutos · Principiante a intermedio",
+      sampleFooter: "10 - 60 minutos · Principiante a intermedio",
       samplePrice: "Desde $8",
       howTitle: "Cómo funciona",
       howText:
