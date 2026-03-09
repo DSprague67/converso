@@ -20,7 +20,7 @@ export default function LanguageConversationLandingPage() {
       sample1: "Describe your favorite place you have visited.",
       sample2: "Ask your partner where they would travel if money were no object.",
       sample3: "Debate: beach trip or mountain trip?",
-      sampleFooter: "10 - 50 minutes · Beginner to Intermediate",
+      sampleFooter: "10 - 60 minutes · Beginner to Intermediate",
       samplePrice: "From $8",
       howTitle: "How it works",
       howText:
@@ -42,7 +42,7 @@ export default function LanguageConversationLandingPage() {
       diff2Text: "You are never stuck wondering what to say next.",
       diff3Title: "Short sessions fit real life",
       diff3Text:
-        "Practice for 10 to 30 minutes instead of committing to long tutoring calls.",
+        "Practice for 10 to 60 minutes instead of committing to long tutoring calls.",
       discordTitle: "Join our founding speaker community",
       discordText:
         "Our Discord is where early speakers can help shape the platform from the ground up. Share ideas, connect with other founding speakers, and get updates as we build.",
@@ -101,7 +101,7 @@ export default function LanguageConversationLandingPage() {
       diff2Text: "Nunca te quedas sin saber qué decir después.",
       diff3Title: "Sesiones cortas para la vida real",
       diff3Text:
-        "Practica de 10 a 30 minutos en vez de comprometerte con llamadas largas de tutoría.",
+        "Practica de 10 a 60 minutos en vez de comprometerte con llamadas largas de tutoría.",
       discordTitle: "Únete a nuestra comunidad de hablantes fundadores",
       discordText:
         "Nuestro Discord es el lugar donde los primeros hablantes pueden ayudar a dar forma a la plataforma desde el inicio. Comparte ideas, conecta con otros hablantes fundadores y recibe actualizaciones mientras construimos.",
