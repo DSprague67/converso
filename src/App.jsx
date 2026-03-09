@@ -127,10 +127,14 @@ export default function LanguageConversationLandingPage() {
 
   return (
     <div className="relative min-h-screen bg-white text-slate-900">
-    <header className="flex justify-center py-8">
+    <header className="flex flex-col items-center py-10">
       <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-center">
       Converso
       </h1>
+
+      <p className="mt-4 text-lg md:text-xl text-slate-600 text-center max-w-xl">
+      Real conversations. Real fluency.
+      </p>
     </header>
       <div className="absolute right-6 top-6 z-10">
         <button
