@@ -2,6 +2,17 @@ import { useState } from "react";
 
 export default function LanguageConversationLandingPage() {
   const [lang, setLang] = useState("en");
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    interestType: "Learner",
+    heardAbout: "",
+  });
+  const [submitStatus, setSubmitStatus] = useState({
+    loading: false,
+    success: "",
+    error: "",
+  });
 
   const t = {
     en: {
@@ -68,6 +79,9 @@ export default function LanguageConversationLandingPage() {
       heardOther: "Other",
       waitlistButton: "Join waitlist",
       toggleButton: "Español",
+      successMessage: "Thanks — you’ve been added to the waitlist.",
+      errorMessage: "Something went wrong. Please try again.",
+      submitting: "Joining...",
     },
     es: {
       badge: "Practica hablando con personas reales",
@@ -134,10 +148,58 @@ export default function LanguageConversationLandingPage() {
       heardOther: "Otro",
       waitlistButton: "Unirme",
       toggleButton: "English",
+      successMessage: "Gracias — ya estás en la lista de espera.",
+      errorMessage: "Algo salió mal. Inténtalo de nuevo.",
+      submitting: "Enviando...",
     },
   };
 
   const text = t[lang];
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setSubmitStatus({ loading: true, success: "", error: "" });
+
+    try {
+      const response = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Submission failed");
+      }
+
+      setSubmitStatus({
+        loading: false,
+        success: text.successMessage,
+        error: "",
+      });
+
+      setFormData({
+        fullName: "",
+        email: "",
+        interestType: "Learner",
+        heardAbout: "",
+      });
+    } catch (error) {
+      setSubmitStatus({
+        loading: false,
+        success: "",
+        error: text.errorMessage,
+      });
+    }
+  }
 
   return (
     <div className="relative min-h-screen bg-white text-slate-900">
@@ -338,43 +400,77 @@ export default function LanguageConversationLandingPage() {
               </div>
             </div>
           </div>
+
           <div className="rounded-3xl bg-slate-900 p-8 text-white shadow-sm">
             <p className="text-sm uppercase tracking-[0.2em] text-slate-300">
               {text.earlyAccess}
             </p>
             <h3 className="mt-3 text-3xl font-bold">{text.earlyTitle}</h3>
             <p className="mt-4 max-w-lg text-slate-300">{text.earlyText}</p>
-            <form id="waitlist" className="mt-8 space-y-4">
+
+            <form id="waitlist" onSubmit={handleSubmit} className="mt-8 space-y-4">
               <input
                 type="text"
+                name="fullName"
+                value={formData.fullName}
+                onChange={handleChange}
                 placeholder={text.namePlaceholder}
                 className="w-full rounded-2xl border border-slate-700 bg-slate-800 px-4 py-3 text-white placeholder:text-slate-400 outline-none"
+                required
               />
+
               <input
                 type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
                 placeholder={text.emailPlaceholder}
                 className="w-full rounded-2xl border border-slate-700 bg-slate-800 px-4 py-3 text-white placeholder:text-slate-400 outline-none"
+                required
               />
-              <select className="w-full rounded-2xl border border-slate-700 bg-slate-800 px-4 py-3 text-white outline-none">
-                <option>{text.learnSpanish}</option>
-                <option>{text.learnEnglish}</option>
-                <option>{text.becomeSpeaker}</option>
-              </select>
-              <select className="w-full rounded-2xl border border-slate-700 bg-slate-800 px-4 py-3 text-white outline-none">
-                <option>{text.heardPlaceholder}</option>
-                <option>{text.heardDiscord}</option>
-                <option>{text.heardReddit}</option>
-                <option>{text.heardFriend}</option>
-                <option>{text.heardSocial}</option>
-                <option>{text.heardGoogle}</option>
-                <option>{text.heardOther}</option>
-              </select>
-              <button
-                type="button"
-                className="w-full rounded-2xl bg-white px-6 py-3 font-semibold text-slate-900 transition hover:opacity-90"
+
+              <select
+                name="interestType"
+                value={formData.interestType}
+                onChange={handleChange}
+                className="w-full rounded-2xl border border-slate-700 bg-slate-800 px-4 py-3 text-white outline-none"
               >
-                {text.waitlistButton}
+                <option value="Learner">{text.learnSpanish}</option>
+                <option value="Learner">{text.learnEnglish}</option>
+                <option value="Speaker">{text.becomeSpeaker}</option>
+              </select>
+
+              <select
+                name="heardAbout"
+                value={formData.heardAbout}
+                onChange={handleChange}
+                className="w-full rounded-2xl border border-slate-700 bg-slate-800 px-4 py-3 text-white outline-none"
+                required
+              >
+                <option value="">{text.heardPlaceholder}</option>
+                <option value="Discord">{text.heardDiscord}</option>
+                <option value="Reddit">{text.heardReddit}</option>
+                <option value="Friend">{text.heardFriend}</option>
+                <option value="Social Media">{text.heardSocial}</option>
+                <option value="Google">{text.heardGoogle}</option>
+                <option value="Other">{text.heardOther}</option>
+              </select>
+
+              <button
+                type="submit"
+                disabled={submitStatus.loading}
+                className="w-full rounded-2xl bg-white px-6 py-3 font-semibold text-slate-900 transition hover:opacity-90 disabled:opacity-70"
+              >
+                {submitStatus.loading ? text.submitting : text.waitlistButton}
               </button>
+
+              {submitStatus.success && (
+                <p className="text-sm text-green-400">{submitStatus.success}</p>
+              )}
+
+              {submitStatus.error && (
+                <p className="text-sm text-red-400">{submitStatus.error}</p>
+              )}
             </form>
           </div>
         </div>
