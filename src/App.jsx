@@ -8,7 +8,7 @@ export default function LanguageConversationLandingPage() {
     email: "",
     interestType: "Learner",
     languageInterest: "Spanish",
-    joinedDiscord: "No",
+    joinedDiscord: "",
     heardAbout: "",
   });
 
@@ -203,7 +203,7 @@ export default function LanguageConversationLandingPage() {
         email: "",
         interestType: "Learner",
         languageInterest: "Spanish",
-        joinedDiscord: "No",
+        joinedDiscord: "",
         heardAbout: "",
       });
     } catch (error) {
