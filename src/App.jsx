@@ -2,12 +2,16 @@ import { useState } from "react";
 
 export default function LanguageConversationLandingPage() {
   const [lang, setLang] = useState("en");
+
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
     interestType: "Learner",
+    languageInterest: "Spanish",
+    joinedDiscord: "No",
     heardAbout: "",
   });
+
   const [submitStatus, setSubmitStatus] = useState({
     loading: false,
     success: "",
@@ -65,11 +69,15 @@ export default function LanguageConversationLandingPage() {
       earlyTitle: "Join the first wave of learners",
       earlyText:
         "We are building the easiest way to practice speaking with native speakers. Join the waitlist to get early access and discounted first sessions.",
-      namePlaceholder: "Your name",
+      namePlaceholder: "Your full name",
       emailPlaceholder: "Your email",
-      learnSpanish: "I want to learn Spanish",
-      learnEnglish: "I want to learn English",
-      becomeSpeaker: "I want to become a speaker",
+      interestLearner: "I want to become a learner",
+      interestSpeaker: "I want to become a speaker",
+      languageSpanish: "I want to learn/speak: Spanish",
+      languageEnglish: "I want to learn/speak: English",
+      joinedDiscordPlaceholder: "Did you join the Discord?",
+      yes: "Yes",
+      no: "No",
       heardPlaceholder: "How did you hear about Converso?",
       heardDiscord: "Discord",
       heardReddit: "Reddit",
@@ -134,11 +142,15 @@ export default function LanguageConversationLandingPage() {
       earlyTitle: "Únete a la primera ola de usuarios",
       earlyText:
         "Estamos construyendo la manera más fácil de practicar hablando con hablantes nativos. Únete a la lista de espera para obtener acceso anticipado y sesiones iniciales con descuento.",
-      namePlaceholder: "Tu nombre",
+      namePlaceholder: "Tu nombre completo",
       emailPlaceholder: "Tu correo electrónico",
-      learnSpanish: "Quiero aprender español",
-      learnEnglish: "Quiero aprender inglés",
-      becomeSpeaker: "Quiero ser hablante",
+      interestLearner: "Quiero convertirme en aprendiz",
+      interestSpeaker: "Quiero convertirme en hablante",
+      languageSpanish: "Quiero aprender/hablar: español",
+      languageEnglish: "Quiero aprender/hablar: inglés",
+      joinedDiscordPlaceholder: "¿Te uniste al Discord?",
+      yes: "Sí",
+      no: "No",
       heardPlaceholder: "¿Cómo supiste de Converso?",
       heardDiscord: "Discord",
       heardReddit: "Reddit",
@@ -190,6 +202,8 @@ export default function LanguageConversationLandingPage() {
         fullName: "",
         email: "",
         interestType: "Learner",
+        languageInterest: "Spanish",
+        joinedDiscord: "No",
         heardAbout: "",
       });
     } catch (error) {
@@ -435,9 +449,29 @@ export default function LanguageConversationLandingPage() {
                 onChange={handleChange}
                 className="w-full rounded-2xl border border-slate-700 bg-slate-800 px-4 py-3 text-white outline-none"
               >
-                <option value="Learner">{text.learnSpanish}</option>
-                <option value="Learner">{text.learnEnglish}</option>
-                <option value="Speaker">{text.becomeSpeaker}</option>
+                <option value="Learner">{text.interestLearner}</option>
+                <option value="Speaker">{text.interestSpeaker}</option>
+              </select>
+
+              <select
+                name="languageInterest"
+                value={formData.languageInterest}
+                onChange={handleChange}
+                className="w-full rounded-2xl border border-slate-700 bg-slate-800 px-4 py-3 text-white outline-none"
+              >
+                <option value="Spanish">{text.languageSpanish}</option>
+                <option value="English">{text.languageEnglish}</option>
+              </select>
+
+              <select
+                name="joinedDiscord"
+                value={formData.joinedDiscord}
+                onChange={handleChange}
+                className="w-full rounded-2xl border border-slate-700 bg-slate-800 px-4 py-3 text-white outline-none"
+              >
+                <option value="">{text.joinedDiscordPlaceholder}</option>
+                <option value="Yes">{text.yes}</option>
+                <option value="No">{text.no}</option>
               </select>
 
               <select

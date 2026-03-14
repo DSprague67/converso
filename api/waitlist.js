@@ -4,14 +4,30 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { fullName, email, interestType, heardAbout } = req.body;
+    const {
+      fullName,
+      email,
+      interestType,
+      languageInterest,
+      joinedDiscord,
+      heardAbout,
+    } = req.body;
 
-    if (!fullName || !email || !interestType || !heardAbout) {
+    if (
+      !fullName ||
+      !email ||
+      !interestType ||
+      !languageInterest ||
+      !joinedDiscord ||
+      !heardAbout
+    ) {
       return res.status(400).json({ error: "Missing required fields" });
     }
 
     const response = await fetch(
-      `https://api.airtable.com/v0/${process.env.AIRTABLE_BASE_ID}/${encodeURIComponent(process.env.AIRTABLE_TABLE_NAME)}`,
+      `https://api.airtable.com/v0/${process.env.AIRTABLE_BASE_ID}/${encodeURIComponent(
+        process.env.AIRTABLE_TABLE_NAME
+      )}`,
       {
         method: "POST",
         headers: {
@@ -23,6 +39,8 @@ export default async function handler(req, res) {
             "Full Name": fullName,
             Email: email,
             "Interest Type": interestType,
+            "Language Interest": languageInterest,
+            "Joined Discord?": joinedDiscord,
             "How Did You Hear About Converso": heardAbout,
           },
         }),
