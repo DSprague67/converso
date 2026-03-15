@@ -219,7 +219,7 @@ export default function LanguageConversationLandingPage() {
     <div className="relative min-h-screen bg-white text-slate-900">
       <header className="flex flex-col items-center py-10">
         <img
-          src="/converso-logo2.png"
+          src="/Converso-logo2.png"
           alt="Converso Logo"
           className="h-48 md:h-64"
         />
