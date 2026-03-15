@@ -221,7 +221,7 @@ export default function LanguageConversationLandingPage() {
         <img
           src="/converso-logo.png"
           alt="Converso Logo"
-          className="h-20 md:h-24"
+          className="h-48 md:h-64"
         />
 
         <p className="mt-4 text-lg md:text-xl text-slate-600 text-center max-w-xl">
